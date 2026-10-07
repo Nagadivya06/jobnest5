@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://127.0.0.1:5500/document.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JobNest - Recruitment Management System</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f3f6fb;
+    color: #222;
+}
+
+/* HEADER */
+
+header {
+    background: #102a43;
+    color: white;
+    padding: 22px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #4fd1c5;
+}
+
+header p {
+    font-size: 14px;
+    color: #d9e2ec;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: white;
+    padding: 12px 25px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+nav button {
+    border: none;
+    background: #e8eef5;
+    padding: 10px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+nav button:hover,
+nav button.active {
+    background: #102a43;
+    color: white;
+}
+
+/* MAIN */
+
+.container {
+    width: 94%;
+    max-width: 1400px;
+    margin: 25px auto;
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* DASHBOARD */
+
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.card h3 {
+    color: #486581;
+    font-size: 15px;
+}
+
+.number {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #102a43;
+}
+
+/* HEADINGS */
+
+h2 {
+    margin-bottom: 18px;
+    color: #102a43;
+}
+
+h3 {
+    margin-bottom: 12px;
+}
+
+/* FORM */
+
+.form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #bcccdc;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+label {
+    font-weight: bold;
+    color: #334e68;
+    font-size: 14px;
+}
+
+button.primary {
+    background: #0b7285;
+    color: white;
+    border: none;
+    padding: 11px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+button.primary:hover {
+    background: #095c6b;
+}
+
+/* TABLE */
+
+.table-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #102a43;
+    color: white;
+}
+
+tr:hover {
+    background: #f5f8fa;
+}
+
+/* BADGES */
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.eligible {
+    background: #d3f9d8;
+    color: #087f23;
+}
+
+.noteligible {
+    background: #ffe3e3;
+    color: #c92a2a;
+}
+
+.pending {
+    background: #fff3bf;
+    color: #946c00;
+}
+
+.selected {
+    background: #d0ebff;
+    color: #1864ab;
+}
+
+/* SEARCH */
+
+.search {
+    margin-bottom: 15px;
+}
+
+.search input {
+    max-width: 400px;
+}
+
+/* REPORT */
+
+.report-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.report-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+}
+
+.bar {
+    margin: 15px 0;
+}
+
+.bar-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.bar-bg {
+    height: 14px;
+    background: #e9ecef;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #0b7285;
+}
+
+/* NOTIFICATION */
+
+.notification {
+    padding: 15px;
+    background: #e7f5ff;
+    border-left: 5px solid #1971c2;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    margin-top: 30px;
+    background: #102a43;
+    color: white;
+}
+
+/* MOBILE */
+
+@media(max-width: 800px) {
+
+    .dashboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .report-grid {
+        grid-template-columns: 1fr;
+    }
+
+    header {
+        padding: 20px;
+    }
+}
+
+@media(max-width: 500px) {
+
+    .dashboard {
+        grid-template-columns: 1fr;
+    }
+
+    nav {
+        flex-direction: column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header>
+
+    <div>
+        <div class="logo">Job<span>Nest</span></div>
+        <p>Recruitment &amp; Campus Placement Management System</p>
+    </div>
+
+    <div>
+        <strong>Placement Cell</strong>
+    </div>
+
+</header>
+
+
+<!-- NAVIGATION -->
+
+<nav>
+
+    <button class="" onclick="showSection('dashboard', this)" fdprocessedid="qe7ic">
+        Dashboard
+    </button>
+
+    <button onclick="showSection('students', this)" fdprocessedid="42zq2m" class="">
+        Students
+    </button>
+
+    <button onclick="showSection('companies', this)" fdprocessedid="5li7o" class="active">
+        Companies
+    </button>
+
+    <button onclick="showSection('applications', this)" fdprocessedid="lkmv4nj">
+        Applications
+    </button>
+
+    <button onclick="showSection('interviews', this)" fdprocessedid="yrmr7">
+        Interviews
+    </button>
+
+    <button onclick="showSection('offers', this)" fdprocessedid="m7izpq">
+        Offers
+    </button>
+
+    <button onclick="showSection('reports', this)" fdprocessedid="f0dyf">
+        Reports
+    </button>
+
+    <button onclick="showSection('notifications', this)" fdprocessedid="k601sd">
+        Notifications
+    </button>
+
+</nav>
+
+
+<div class="container">
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard" class="section">
+
+    <h2>Placement Dashboard</h2>
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3>Total Students</h3>
+            <div class="number" id="studentCount">4</div>
+        </div>
+
+        <div class="card">
+            <h3>Total Companies</h3>
+            <div class="number" id="companyCount">3</div>
+        </div>
+
+        <div class="card">
+            <h3>Applications</h3>
+            <div class="number" id="applicationCount">0</div>
+        </div>
+
+        <div class="card">
+            <h3>Offers</h3>
+            <div class="number" id="offerCount">0</div>
+        </div>
+
+    </div>
+
+
+    <div class="dashboard">
+
+        <div class="card">
+            <h3>Selected Students</h3>
+            <div class="number" id="selectedCount">0</div>
+        </div>
+
+        <div class="card">
+            <h3>Placement Percentage</h3>
+            <div class="number" id="placementPercentage">0.0%</div>
+        </div>
+
+        <div class="card">
+            <h3>Average Salary</h3>
+            <div class="number" id="averageSalary">₹0.00 LPA</div>
+        </div>
+
+        <div class="card">
+            <h3>Pending Interviews</h3>
+            <div class="number" id="interviewCount">0</div>
+        </div>
+
+    </div>
+
+
+    <div class="form-box">
+
+        <h3>System Overview</h3>
+
+        <p>
+            JobNest connects students, recruiters and placement officers
+            through a single recruitment management platform.
+        </p>
+
+        <br>
+
+        <p>
+            The system manages student profiles, companies, applications,
+            interviews, offers and placement analytics.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STUDENTS ================= -->
+
+<section id="students" class="section">
+
+    <h2>Student Management</h2>
+
+
+    <div class="form-box">
+
+        <h3>Register Student</h3>
+
+        <div class="form-grid">
+
+            <div>
+                <label>Student Name</label>
+                <input type="text" id="studentName" placeholder="Enter student name" fdprocessedid="apdslh">
+            </div>
+
+            <div>
+                <label>Department</label>
+
+                <select id="studentDepartment" fdprocessedid="qxskaj">
+
+                    <option value="CSE">CSE</option>
+                    <option value="ECE">ECE</option>
+                    <option value="IT">IT</option>
+                    <option value="EEE">EEE</option>
+                    <option value="MECH">MECH</option>
+
+                </select>
+
+            </div>
+
+            <div>
+                <label>CGPA</label>
+
+                <input type="number" id="studentCGPA" step="0.1" min="0" max="10" placeholder="0 - 10" fdprocessedid="cirkj">
+
+            </div>
+
+            <div>
+                <label>Email</label>
+
+                <input type="email" id="studentEmail" placeholder="student@email.com" fdprocessedid="r0bjhi">
+
+            </div>
+
+        </div>
+
+        <button class="primary" onclick="addStudent()" fdprocessedid="a6gvpg">
+            Register Student
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <h3>Student Records</h3>
+
+        <div class="search">
+
+            <input type="text" id="studentSearch" placeholder="Search students..." onkeyup="displayStudents()" fdprocessedid="p44qle">
+
+        </div>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Department</th>
+                    <th>CGPA</th>
+                    <th>Email</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="studentTable">
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>Vinuthna</td>
+
+                    <td>CSE</td>
+
+                    <td>8.5</td>
+
+                    <td>vinuthna@gmail.com</td>
+
+                    <td><span class="badge eligible">Eligible</span></td>
+
+                </tr>
+
+            
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Anu</td>
+
+                    <td>ECE</td>
+
+                    <td>7.2</td>
+
+                    <td>anu@gmail.com</td>
+
+                    <td><span class="badge noteligible">Below Criteria</span></td>
+
+                </tr>
+
+            
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Rahul</td>
+
+                    <td>CSE</td>
+
+                    <td>9</td>
+
+                    <td>rahul@gmail.com</td>
+
+                    <td><span class="badge eligible">Eligible</span></td>
+
+                </tr>
+
+            
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>Priya</td>
+
+                    <td>IT</td>
+
+                    <td>8</td>
+
+                    <td>priya@gmail.com</td>
+
+                    <td><span class="badge eligible">Eligible</span></td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COMPANIES ================= -->
+
+<section id="companies" class="section active">
+
+    <h2>Company Management</h2>
+
+
+    <div class="form-box">
+
+        <h3>Register Company</h3>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>Company Name</label>
+
+                <input type="text" id="companyName" placeholder="Enter company name" fdprocessedid="j7jqf">
+
+            </div>
+
+
+            <div>
+
+                <label>Minimum CGPA</label>
+
+                <input type="number" id="companyCGPA" step="0.1" min="0" max="10" placeholder="Example: 7.5" fdprocessedid="moixhq">
+
+            </div>
+
+
+            <div>
+
+                <label>Job Role</label>
+
+                <input type="text" id="companyRole" placeholder="Software Developer" fdprocessedid="g4lchi">
+
+            </div>
+
+
+            <div>
+
+                <label>Salary (LPA)</label>
+
+                <input type="number" id="companySalary" placeholder="Example: 6" fdprocessedid="7944ro">
+
+            </div>
+
+        </div>
+
+
+        <button class="primary" onclick="addCompany()" fdprocessedid="z3az8k">
+            Register Company
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <h3>Company Records</h3>
+
+        <div class="search">
+
+            <input type="text" id="companySearch" placeholder="Search companies..." onkeyup="displayCompanies()" fdprocessedid="ub2x1u">
+
+        </div>
+
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Company</th>
+                    <th>Role</th>
+                    <th>Minimum CGPA</th>
+                    <th>Salary</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="companyTable">
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>TCS</td>
+
+                    <td>Software Developer</td>
+
+                    <td>7.5</td>
+
+                    <td>₹6 LPA</td>
+
+                </tr>
+
+            
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Infosys</td>
+
+                    <td>System Engineer</td>
+
+                    <td>7</td>
+
+                    <td>₹5.5 LPA</td>
+
+                </tr>
+
+            
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Wipro</td>
+
+                    <td>Java Developer</td>
+
+                    <td>7.5</td>
+
+                    <td>₹6.5 LPA</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= APPLICATIONS ================= -->
+
+<section id="applications" class="section">
+
+    <h2>Job Applications</h2>
+
+
+    <div class="form-box">
+
+        <h3>Apply for Job</h3>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>Select Student</label>
+
+                <select id="applicationStudent"><option value="">Select Student</option><option value="1">
+                Vinuthna - CSE
+            </option><option value="2">
+                Anu - ECE
+            </option><option value="3">
+                Rahul - CSE
+            </option><option value="4">
+                Priya - IT
+            </option></select>
+
+            </div>
+
+
+            <div>
+
+                <label>Select Company</label>
+
+                <select id="applicationCompany"><option value="">Select Company</option><option value="1">
+                TCS - Software Developer
+            </option><option value="2">
+                Infosys - System Engineer
+            </option><option value="3">
+                Wipro - Java Developer
+            </option></select>
+
+            </div>
+
+        </div>
+
+
+        <button class="primary" onclick="applyJob()">
+            Submit Application
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <h3>Application Records</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>CGPA Check</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="applicationTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= INTERVIEWS ================= -->
+
+<section id="interviews" class="section">
+
+    <h2>Interview Management</h2>
+
+
+    <div class="form-box">
+
+        <h3>Schedule Interview</h3>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>Student</label>
+
+                <select id="interviewStudent"><option value="">Select Student</option><option value="1">
+                Vinuthna - CSE
+            </option><option value="2">
+                Anu - ECE
+            </option><option value="3">
+                Rahul - CSE
+            </option><option value="4">
+                Priya - IT
+            </option></select>
+
+            </div>
+
+
+            <div>
+
+                <label>Company</label>
+
+                <select id="interviewCompany"><option value="">Select Company</option><option value="1">
+                TCS - Software Developer
+            </option><option value="2">
+                Infosys - System Engineer
+            </option><option value="3">
+                Wipro - Java Developer
+            </option></select>
+
+            </div>
+
+
+            <div>
+
+                <label>Date</label>
+
+                <input type="date" id="interviewDate">
+
+            </div>
+
+
+            <div>
+
+                <label>Time</label>
+
+                <input type="time" id="interviewTime">
+
+            </div>
+
+        </div>
+
+
+        <button class="primary" onclick="scheduleInterview()">
+            Schedule Interview
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <h3>Interview Schedule</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="interviewTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= OFFERS ================= -->
+
+<section id="offers" class="section">
+
+    <h2>Offer Letter Management</h2>
+
+
+    <div class="form-box">
+
+        <h3>Generate Offer Letter</h3>
+
+        <div class="form-grid">
+
+            <div>
+
+                <label>Student</label>
+
+                <select id="offerStudent"><option value="">Select Student</option><option value="1">
+                Vinuthna - CSE
+            </option><option value="2">
+                Anu - ECE
+            </option><option value="3">
+                Rahul - CSE
+            </option><option value="4">
+                Priya - IT
+            </option></select>
+
+            </div>
+
+
+            <div>
+
+                <label>Company</label>
+
+                <select id="offerCompany"><option value="">Select Company</option><option value="1">
+                TCS - Software Developer
+            </option><option value="2">
+                Infosys - System Engineer
+            </option><option value="3">
+                Wipro - Java Developer
+            </option></select>
+
+            </div>
+
+        </div>
+
+
+        <button class="primary" onclick="generateOffer()">
+            Generate Offer
+        </button>
+
+    </div>
+
+
+    <div class="table-box">
+
+        <h3>Offer Letters</h3>
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Offer ID</th>
+                    <th>Student</th>
+                    <th>Company</th>
+                    <th>Salary</th>
+                    <th>Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="offerTable"></tbody>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- ================= REPORTS ================= -->
+
+<section id="reports" class="section">
+
+    <h2>Recruitment Analytics</h2>
+
+
+    <div class="report-grid">
+
+
+        <div class="report-card">
+
+            <h3>Department-wise Students</h3>
+
+            <div id="departmentReport">
+
+            <div class="bar">
+
+                <div class="bar-label">
+
+                    <span>CSE</span>
+
+                    <span>2</span>
+
+                </div>
+
+                <div class="bar-bg">
+
+                    <div class="bar-fill" style="width:50%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        
+
+            <div class="bar">
+
+                <div class="bar-label">
+
+                    <span>ECE</span>
+
+                    <span>1</span>
+
+                </div>
+
+                <div class="bar-bg">
+
+                    <div class="bar-fill" style="width:25%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        
+
+            <div class="bar">
+
+                <div class="bar-label">
+
+                    <span>IT</span>
+
+                    <span>1</span>
+
+                </div>
+
+                <div class="bar-bg">
+
+                    <div class="bar-fill" style="width:25%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <h3>Salary Statistics</h3>
+
+            <p>
+                Average Salary:
+                <strong id="reportAverageSalary">₹0.00 LPA</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Highest Salary:
+                <strong id="highestSalary">₹0 LPA</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Total Offers:
+                <strong id="reportOffers">0</strong>
+            </p>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <h3>Placement Statistics</h3>
+
+            <p>
+                Total Students:
+                <strong id="reportStudents">4</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Selected:
+                <strong id="reportSelected">0</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Placement Percentage:
+                <strong id="reportPercentage">0.00%</strong>
+            </p>
+
+        </div>
+
+
+        <div class="report-card">
+
+            <h3>Recruitment Summary</h3>
+
+            <p>
+                Registered Companies:
+                <strong id="reportCompanies">3</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Applications:
+                <strong id="reportApplications">0</strong>
+            </p>
+
+            <br>
+
+            <p>
+                Interviews:
+                <strong id="reportInterviews">0</strong>
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= NOTIFICATIONS ================= -->
+
+<section id="notifications" class="section">
+
+    <h2>Notifications</h2>
+
+
+    <div id="notificationArea">
+
+        <div class="notification">
+            Welcome to JobNest Recruitment Management System.
+        </div>
+
+        <div class="notification">
+            Students can apply for eligible company recruitment drives.
+        </div>
+
+        <div class="notification">
+            Placement officers can manage interviews and offer letters.
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<footer>
+
+    <p>JobNest © 2026 | Campus Recruitment Management System</p>
+
+</footer>
+
+
+<script>
+
+/* ================= DATA ================= */
+
+let students = [
+    {
+        id: 1,
+        name: "Vinuthna",
+        department: "CSE",
+        cgpa: 8.5,
+        email: "vinuthna@gmail.com"
+    },
+    {
+        id: 2,
+        name: "Anu",
+        department: "ECE",
+        cgpa: 7.2,
+        email: "anu@gmail.com"
+    },
+    {
+        id: 3,
+        name: "Rahul",
+        department: "CSE",
+        cgpa: 9.0,
+        email: "rahul@gmail.com"
+    },
+    {
+        id: 4,
+        name: "Priya",
+        department: "IT",
+        cgpa: 8.0,
+        email: "priya@gmail.com"
+    }
+];
+
+
+let companies = [
+    {
+        id: 1,
+        name: "TCS",
+        minCGPA: 7.5,
+        role: "Software Developer",
+        salary: 6
+    },
+    {
+        id: 2,
+        name: "Infosys",
+        minCGPA: 7.0,
+        role: "System Engineer",
+        salary: 5.5
+    },
+    {
+        id: 3,
+        name: "Wipro",
+        minCGPA: 7.5,
+        role: "Java Developer",
+        salary: 6.5
+    }
+];
+
+
+let applications = [];
+
+let interviews = [];
+
+let offers = [];
+
+let notifications = [];
+
+
+/* ================= NAVIGATION ================= */
+
+function showSection(sectionId, button) {
+
+    let sections = document.querySelectorAll(".section");
+
+    sections.forEach(section => {
+        section.classList.remove("active");
+    });
+
+    document.getElementById(sectionId).classList.add("active");
+
+    let buttons = document.querySelectorAll("nav button");
+
+    buttons.forEach(btn => {
+        btn.classList.remove("active");
+    });
+
+    button.classList.add("active");
+
+    updateAll();
+
+}
+
+
+/* ================= STUDENT ================= */
+
+function addStudent() {
+
+    let name = document.getElementById("studentName").value.trim();
+
+    let department =
+        document.getElementById("studentDepartment").value;
+
+    let cgpa =
+        parseFloat(document.getElementById("studentCGPA").value);
+
+    let email =
+        document.getElementById("studentEmail").value.trim();
+
+
+    if (name === "" || email === "") {
+
+        alert("Please enter all student details.");
+
+        return;
+    }
+
+
+    if (isNaN(cgpa) || cgpa < 0 || cgpa > 10) {
+
+        alert("Invalid CGPA. Enter a value between 0 and 10.");
+
+        return;
+    }
+
+
+    let student = {
+
+        id: students.length + 1,
+
+        name: name,
+
+        department: department,
+
+        cgpa: cgpa,
+
+        email: email
+
+    };
+
+
+    students.push(student);
+
+
+    addNotification(
+        "New student " + name + " registered successfully."
+    );
+
+
+    document.getElementById("studentName").value = "";
+
+    document.getElementById("studentCGPA").value = "";
+
+    document.getElementById("studentEmail").value = "";
+
+
+    updateAll();
+
+}
+
+
+/* ================= DISPLAY STUDENTS ================= */
+
+function displayStudents() {
+
+    let table =
+        document.getElementById("studentTable");
+
+    let search =
+        document.getElementById("studentSearch").value.toLowerCase();
+
+
+    table.innerHTML = "";
+
+
+    students
+        .filter(s =>
+            s.name.toLowerCase().includes(search) ||
+            s.department.toLowerCase().includes(search)
+        )
+        .forEach(s => {
+
+            let status =
+                s.cgpa >= 7.5
+                ? `<span class="badge eligible">Eligible</span>`
+                : `<span class="badge noteligible">Below Criteria</span>`;
+
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>${s.id}</td>
+
+                    <td>${s.name}</td>
+
+                    <td>${s.department}</td>
+
+                    <td>${s.cgpa}</td>
+
+                    <td>${s.email}</td>
+
+                    <td>${status}</td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* ================= COMPANY ================= */
+
+function addCompany() {
+
+    let name =
+        document.getElementById("companyName").value.trim();
+
+    let minCGPA =
+        parseFloat(document.getElementById("companyCGPA").value);
+
+    let role =
+        document.getElementById("companyRole").value.trim();
+
+    let salary =
+        parseFloat(document.getElementById("companySalary").value);
+
+
+    if (
+        name === "" ||
+        role === "" ||
+        isNaN(minCGPA) ||
+        isNaN(salary)
+    ) {
+
+        alert("Please enter all company details.");
+
+        return;
+    }
+
+
+    if (minCGPA < 0 || minCGPA > 10) {
+
+        alert("Minimum CGPA must be between 0 and 10.");
+
+        return;
+    }
+
+
+    let company = {
+
+        id: companies.length + 1,
+
+        name: name,
+
+        minCGPA: minCGPA,
+
+        role: role,
+
+        salary: salary
+
+    };
+
+
+    companies.push(company);
+
+
+    addNotification(
+        name + " has been added as a recruiting company."
+    );
+
+
+    document.getElementById("companyName").value = "";
+
+    document.getElementById("companyCGPA").value = "";
+
+    document.getElementById("companyRole").value = "";
+
+    document.getElementById("companySalary").value = "";
+
+
+    updateAll();
+
+}
+
+
+/* ================= DISPLAY COMPANIES ================= */
+
+function displayCompanies() {
+
+    let table =
+        document.getElementById("companyTable");
+
+    let search =
+        document.getElementById("companySearch").value.toLowerCase();
+
+
+    table.innerHTML = "";
+
+
+    companies
+        .filter(c =>
+            c.name.toLowerCase().includes(search) ||
+            c.role.toLowerCase().includes(search)
+        )
+        .forEach(c => {
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>${c.id}</td>
+
+                    <td>${c.name}</td>
+
+                    <td>${c.role}</td>
+
+                    <td>${c.minCGPA}</td>
+
+                    <td>₹${c.salary} LPA</td>
+
+                </tr>
+
+            `;
+
+        });
+
+}
+
+
+/* ================= DROPDOWNS ================= */
+
+function updateDropdowns() {
+
+    let studentOptions =
+        `<option value="">Select Student</option>`;
+
+
+    students.forEach(s => {
+
+        studentOptions +=
+            `<option value="${s.id}">
+                ${s.name} - ${s.department}
+            </option>`;
+
+    });
+
+
+    document.getElementById("applicationStudent").innerHTML =
+        studentOptions;
+
+    document.getElementById("interviewStudent").innerHTML =
+        studentOptions;
+
+    document.getElementById("offerStudent").innerHTML =
+        studentOptions;
+
+
+    let companyOptions =
+        `<option value="">Select Company</option>`;
+
+
+    companies.forEach(c => {
+
+        companyOptions +=
+            `<option value="${c.id}">
+                ${c.name} - ${c.role}
+            </option>`;
+
+    });
+
+
+    document.getElementById("applicationCompany").innerHTML =
+        companyOptions;
+
+    document.getElementById("interviewCompany").innerHTML =
+        companyOptions;
+
+    document.getElementById("offerCompany").innerHTML =
+        companyOptions;
+
+}
+
+
+/* ================= APPLICATION ================= */
+
+function applyJob() {
+
+    let studentId =
+        parseInt(document.getElementById("applicationStudent").value);
+
+    let companyId =
+        parseInt(document.getElementById("applicationCompany").value);
+
+
+    if (!studentId || !companyId) {
+
+        alert("Please select student and company.");
+
+        return;
+    }
+
+
+    let student =
+        students.find(s => s.id === studentId);
+
+    let company =
+        companies.find(c => c.id === companyId);
+
+
+    /* Duplicate application check */
+
+    let duplicate =
+        applications.some(a =>
+            a.studentId === studentId &&
+            a.companyId === companyId
+        );
+
+
+    if (duplicate) {
+
+        alert(
+            "Exception: Duplicate application is not allowed."
+        );
+
+        return;
+    }
+
+
+    let eligible =
+        student.cgpa >= company.minCGPA;
+
+
+    let application = {
+
+        id: applications.length + 1,
+
+        studentId: studentId,
+
+        companyId: companyId,
+
+        status: eligible
+            ? "Eligible"
+            : "Rejected"
+
+    };
+
+
+    applications.push(application);
+
+
+    if (eligible) {
+
+        addNotification(
+            student.name +
+            " applied to " +
+            company.name +
+            " and is eligible."
+        );
+
+    } else {
+
+        addNotification(
+            student.name +
+            " is not eligible for " +
+            company.name
+        );
+
+    }
+
+
+    updateAll();
+
+}
+
+
+/* ================= DISPLAY APPLICATIONS ================= */
+
+function displayApplications() {
+
+    let table =
+        document.getElementById("applicationTable");
+
+    table.innerHTML = "";
+
+
+    applications.forEach(a => {
+
+        let student =
+            students.find(s => s.id === a.studentId);
+
+        let company =
+            companies.find(c => c.id === a.companyId);
+
+
+        let statusClass =
+            a.status === "Eligible"
+            ? "eligible"
+            : "noteligible";
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${a.id}</td>
+
+                <td>${student.name}</td>
+
+                <td>${company.name}</td>
+
+                <td>${student.cgpa} / ${company.minCGPA}</td>
+
+                <td>
+                    <span class="badge ${statusClass}">
+                        ${a.status}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= INTERVIEW ================= */
+
+function scheduleInterview() {
+
+    let studentId =
+        parseInt(document.getElementById("interviewStudent").value);
+
+    let companyId =
+        parseInt(document.getElementById("interviewCompany").value);
+
+    let date =
+        document.getElementById("interviewDate").value;
+
+    let time =
+        document.getElementById("interviewTime").value;
+
+
+    if (!studentId || !companyId || !date || !time) {
+
+        alert("Please enter all interview details.");
+
+        return;
+    }
+
+
+    let student =
+        students.find(s => s.id === studentId);
+
+    let company =
+        companies.find(c => c.id === companyId);
+
+
+    /* Check eligibility */
+
+    if (student.cgpa < company.minCGPA) {
+
+        alert(
+            "Interview cannot be scheduled because the student is not eligible."
+        );
+
+        return;
+    }
+
+
+    /* Interview conflict */
+
+    let conflict =
+        interviews.some(i =>
+            i.studentId === studentId &&
+            i.date === date &&
+            i.time === time
+        );
+
+
+    if (conflict) {
+
+        alert(
+            "Exception: Interview time conflict detected."
+        );
+
+        return;
+    }
+
+
+    interviews.push({
+
+        id: interviews.length + 1,
+
+        studentId: studentId,
+
+        companyId: companyId,
+
+        date: date,
+
+        time: time,
+
+        status: "Scheduled"
+
+    });
+
+
+    addNotification(
+        "Interview scheduled for " +
+        student.name +
+        " at " +
+        company.name
+    );
+
+
+    updateAll();
+
+}
+
+
+/* ================= DISPLAY INTERVIEWS ================= */
+
+function displayInterviews() {
+
+    let table =
+        document.getElementById("interviewTable");
+
+    table.innerHTML = "";
+
+
+    interviews.forEach(i => {
+
+        let student =
+            students.find(s => s.id === i.studentId);
+
+        let company =
+            companies.find(c => c.id === i.companyId);
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${i.id}</td>
+
+                <td>${student.name}</td>
+
+                <td>${company.name}</td>
+
+                <td>${i.date}</td>
+
+                <td>${i.time}</td>
+
+                <td>
+                    <span class="badge pending">
+                        ${i.status}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= OFFER LETTER ================= */
+
+function generateOffer() {
+
+    let studentId =
+        parseInt(document.getElementById("offerStudent").value);
+
+    let companyId =
+        parseInt(document.getElementById("offerCompany").value);
+
+
+    if (!studentId || !companyId) {
+
+        alert("Please select student and company.");
+
+        return;
+    }
+
+
+    let student =
+        students.find(s => s.id === studentId);
+
+    let company =
+        companies.find(c => c.id === companyId);
+
+
+    if (student.cgpa < company.minCGPA) {
+
+        alert(
+            "Offer validation failed: Student is not eligible."
+        );
+
+        return;
+    }
+
+
+    let existing =
+        offers.some(o =>
+            o.studentId === studentId &&
+            o.companyId === companyId
+        );
+
+
+    if (existing) {
+
+        alert(
+            "Exception: Offer already exists."
+        );
+
+        return;
+    }
+
+
+    offers.push({
+
+        id: offers.length + 1,
+
+        studentId: studentId,
+
+        companyId: companyId,
+
+        salary: company.salary,
+
+        status: "Selected"
+
+    });
+
+
+    addNotification(
+        "Offer letter generated for " +
+        student.name +
+        " from " +
+        company.name
+    );
+
+
+    updateAll();
+
+}
+
+
+/* ================= DISPLAY OFFERS ================= */
+
+function displayOffers() {
+
+    let table =
+        document.getElementById("offerTable");
+
+    table.innerHTML = "";
+
+
+    offers.forEach(o => {
+
+        let student =
+            students.find(s => s.id === o.studentId);
+
+        let company =
+            companies.find(c => c.id === o.companyId);
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>OFF-${o.id}</td>
+
+                <td>${student.name}</td>
+
+                <td>${company.name}</td>
+
+                <td>₹${o.salary} LPA</td>
+
+                <td>
+                    <span class="badge selected">
+                        ${o.status}
+                    </span>
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+/* ================= REPORTS ================= */
+
+function generateReports() {
+
+    let departmentData = {};
+
+
+    students.forEach(s => {
+
+        if (!departmentData[s.department]) {
+
+            departmentData[s.department] = 0;
+
+        }
+
+        departmentData[s.department]++;
+
+    });
+
+
+    let report =
+        document.getElementById("departmentReport");
+
+    report.innerHTML = "";
+
+
+    let totalStudents = students.length;
+
+
+    for (let dept in departmentData) {
+
+        let count = departmentData[dept];
+
+        let percentage =
+            (count / totalStudents) * 100;
+
+
+        report.innerHTML += `
+
+            <div class="bar">
+
+                <div class="bar-label">
+
+                    <span>${dept}</span>
+
+                    <span>${count}</span>
+
+                </div>
+
+                <div class="bar-bg">
+
+                    <div class="bar-fill"
+                         style="width:${percentage}%">
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    /* Salary */
+
+    let totalSalary = 0;
+
+    let highest = 0;
+
+
+    offers.forEach(o => {
+
+        totalSalary += o.salary;
+
+        if (o.salary > highest) {
+
+            highest = o.salary;
+
+        }
+
+    });
+
+
+    let average =
+        offers.length > 0
+        ? totalSalary / offers.length
+        : 0;
+
+
+    document.getElementById("reportAverageSalary").innerText =
+        "₹" + average.toFixed(2) + " LPA";
+
+
+    document.getElementById("highestSalary").innerText =
+        "₹" + highest + " LPA";
+
+
+    document.getElementById("reportOffers").innerText =
+        offers.length;
+
+
+    document.getElementById("reportStudents").innerText =
+        students.length;
+
+
+    document.getElementById("reportSelected").innerText =
+        offers.length;
+
+
+    let placement =
+        students.length > 0
+        ? (offers.length / students.length) * 100
+        : 0;
+
+
+    document.getElementById("reportPercentage").innerText =
+        placement.toFixed(2) + "%";
+
+
+    document.getElementById("reportCompanies").innerText =
+        companies.length;
+
+
+    document.getElementById("reportApplications").innerText =
+        applications.length;
+
+
+    document.getElementById("reportInterviews").innerText =
+        interviews.length;
+
+}
+
+
+/* ================= NOTIFICATIONS ================= */
+
+function addNotification(message) {
+
+    notifications.push(message);
+
+
+    let area =
+        document.getElementById("notificationArea");
+
+
+    area.innerHTML += `
+
+        <div class="notification">
+            ${message}
+        </div>
+
+    `;
+
+}
+
+
+/* ================= DASHBOARD ================= */
+
+function updateDashboard() {
+
+    document.getElementById("studentCount").innerText =
+        students.length;
+
+
+    document.getElementById("companyCount").innerText =
+        companies.length;
+
+
+    document.getElementById("applicationCount").innerText =
+        applications.length;
+
+
+    document.getElementById("offerCount").innerText =
+        offers.length;
+
+
+    document.getElementById("selectedCount").innerText =
+        offers.length;
+
+
+    let percentage =
+        students.length > 0
+        ? (offers.length / students.length) * 100
+        : 0;
+
+
+    document.getElementById("placementPercentage").innerText =
+        percentage.toFixed(1) + "%";
+
+
+    let totalSalary = 0;
+
+
+    offers.forEach(o => {
+
+        totalSalary += o.salary;
+
+    });
+
+
+    let average =
+        offers.length > 0
+        ? totalSalary / offers.length
+        : 0;
+
+
+    document.getElementById("averageSalary").innerText =
+        "₹" + average.toFixed(2) + " LPA";
+
+
+    document.getElementById("interviewCount").innerText =
+        interviews.length;
+
+}
+
+
+/* ================= UPDATE EVERYTHING ================= */
+
+function updateAll() {
+
+    displayStudents();
+
+    displayCompanies();
+
+    displayApplications();
+
+    displayInterviews();
+
+    displayOffers();
+
+    updateDropdowns();
+
+    updateDashboard();
+
+    generateReports();
+
+}
+
+
+/* ================= START APPLICATION ================= */
+
+updateAll();
+
+</script>
+
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+
+<span id="PING_CONTENT_PUSH_NOTIFICATION" style="display: none;"></span><span id="PING_IFRAME_FORM_DETECTION" style="display: none;"></span></body></html>
